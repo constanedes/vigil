@@ -1,0 +1,10 @@
+# ─── Vigil .gitignore ────────────────────────────────────────
+
+node_modules/
+
+# Secrets
+.env
+
+# Data
+data/
+logs/
