@@ -1,7 +1,3 @@
-import { existsSync, readFileSync } from "fs";
-import { resolve } from "path";
-import { parse as parseYaml } from "yaml";
-
 export interface SiteConfig {
     id: string;
     url: string;

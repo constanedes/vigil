@@ -1,0 +1,5 @@
+{
+  "name": "@vigil/helpers",
+  "type": "module",
+  "main": "./index.ts"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "@vigil/models",
+  "type": "module",
+  "main": "./index.ts"
+}

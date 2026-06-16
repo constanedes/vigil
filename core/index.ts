@@ -1,5 +1,5 @@
 import { createServer } from "@core/api/server";
-import { get as getLogger, init as initLogger } from "@core/logger";
+import { get as getLogger, init as initLogger } from "@vigil/services";
 import { Notifier } from "@core/notifier/notifier";
 import { openDb } from "@core/store/db";
 

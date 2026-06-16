@@ -1,5 +1,4 @@
 import * as cheerio from "cheerio";
-import { createHash } from "crypto";
 
 /**
  * Fields to remove from HTML before comparison
@@ -32,13 +31,6 @@ export function cleanAndExtractText(html: string): string {
 
     // Normalize whitespace: collapse multiple spaces/newlines into single space
     return text.replace(/\s+/g, " ").trim();
-}
-
-/**
- * Computes a SHA-256 hash of the given text.
- */
-export function computeHash(text: string): string {
-    return createHash("sha256").update(text, "utf-8").digest("hex");
 }
 
 /**

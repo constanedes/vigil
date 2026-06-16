@@ -10,7 +10,10 @@
         "baseUrl": ".",
         "paths": {
             "@core/*": ["./core/*"],
-            "@scraper/*": ["./scraper/src/*"]
+            "@scraper/*": ["./scraper/src/*"],
+            "@vigil/services": ["packages/services/index.ts"],
+            "@vigil/helpers": ["packages/helpers/index.ts"],
+            "@vigil/models": ["packages/models/index.ts"]
         },
         "types": ["bun"]
     }

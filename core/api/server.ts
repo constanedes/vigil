@@ -3,7 +3,7 @@ import { Elysia } from "elysia";
 import { eventRoutes } from "../api/routes/event.routes";
 import { siteRoutes } from "../api/routes/site.routes";
 import { systemRoutes } from "../api/routes/system.routes";
-import { get as getLogger } from "../logger/logger";
+import { get as getLogger } from "../../packages/utils/logger";
 import type { Notifier } from "../notifier/notifier";
 import type { DB } from "../store/db";
 import { EventStore } from "../store/events";

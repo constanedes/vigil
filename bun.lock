@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "vigil-core",
+      "name": "vigil",
       "devDependencies": {
         "@biomejs/biome": "latest",
         "@types/bun": "latest",
@@ -14,11 +14,11 @@
       "name": "@vigil/core",
       "dependencies": {
         "@elysiajs/cors": "^1.4.2",
-        "elysia": "^1.0.0",
-        "nodemailer": "^6.9.0",
+        "elysia": "^1.4.28",
+        "nodemailer": "^9.0.0",
       },
       "devDependencies": {
-        "@types/nodemailer": "^6.4.14",
+        "@types/nodemailer": "^8.0.1",
       },
     },
     "dashboard": {
@@ -31,6 +31,15 @@
         "svelte-check": "^4.6.0",
         "vite": "^8.0.16",
       },
+    },
+    "packages/helpers": {
+      "name": "@vigil/helpers",
+    },
+    "packages/models": {
+      "name": "@vigil/models",
+    },
+    "packages/services": {
+      "name": "@vigil/services",
     },
     "scraper": {
       "name": "@vigil/scraper",
@@ -139,7 +148,7 @@
 
     "@types/node": ["@types/node@25.9.3", "", { "dependencies": { "undici-types": ">=7.24.0 <7.24.7" } }, "sha512-603BddQMv3pUcr4U2dhujk83N2tTDVr/34wII2B6bJy6g+8WD6yUb11jszNs0gdi4PesVWl7ABt8nYMVpnLUcg=="],
 
-    "@types/nodemailer": ["@types/nodemailer@6.4.24", "", { "dependencies": { "@types/node": "*" } }, "sha512-Ww4u0rT9wQNXh4JiQaIwx3QWdcOFXzOjQA2zc+jtFYNmQiT4mIUqcDin51bDFdkzKubFnQCZNK7FIHlPKQ/q9w=="],
+    "@types/nodemailer": ["@types/nodemailer@8.0.1", "", { "dependencies": { "@types/node": "*" } }, "sha512-PxpaInm8V1JQDd4j0ds5HfvWQk8JupS1C0Picb96QJsrrRDjBH+DlK7L4ZdNSqNULhiZRQHc40nLVShaGxXAMw=="],
 
     "@types/trusted-types": ["@types/trusted-types@2.0.7", "", {}, "sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw=="],
 
@@ -147,7 +156,13 @@
 
     "@vigil/dashboard": ["@vigil/dashboard@workspace:dashboard"],
 
+    "@vigil/helpers": ["@vigil/helpers@workspace:packages/helpers"],
+
+    "@vigil/models": ["@vigil/models@workspace:packages/models"],
+
     "@vigil/scraper": ["@vigil/scraper@workspace:scraper"],
+
+    "@vigil/services": ["@vigil/services@workspace:packages/services"],
 
     "acorn": ["acorn@8.17.0", "", { "bin": { "acorn": "bin/acorn" } }, "sha512-xRQbDb9BnwDafYNn6Vwl839DYVjqXYb1XVGtWAZ1kcDc6iwAL4hg3B1dZlRiuENFeO2H53gFG3in621AdERVAg=="],
 
@@ -253,7 +268,7 @@
 
     "nanoid": ["nanoid@3.3.12", "", { "bin": { "nanoid": "bin/nanoid.cjs" } }, "sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ=="],
 
-    "nodemailer": ["nodemailer@6.10.1", "", {}, "sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA=="],
+    "nodemailer": ["nodemailer@9.0.0", "", {}, "sha512-tbPTid7d/p9jAA8CRZ3iomvrMaST0o6NYuY7v6JQZHpPRZ61mLFSPKYd7342NtOFuej9/+L48SOIxwfu2uDvtw=="],
 
     "nth-check": ["nth-check@2.1.1", "", { "dependencies": { "boolbase": "^1.0.0" } }, "sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w=="],
 

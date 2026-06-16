@@ -1,4 +1,4 @@
-import { get as getLogger } from "../../core/logger/logger";
+import { get as getLogger } from "../../packages/utils/logger";
 import { closeBrowser } from "./browser";
 import { DEFAULT_CONFIG } from "./config";
 import { startPolling } from "./poller";
@@ -77,7 +77,7 @@ async function main(): Promise<void> {
     setInterval(syncSites, 30000);
 
     // Keep process alive indefinitely
-    await new Promise(() => {});
+    await new Promise(() => { });
 }
 
 main().catch((err) => {

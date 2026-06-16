@@ -1,5 +1,5 @@
 import type { Transporter } from "nodemailer";
-import { get as getLogger } from "../logger/logger";
+import { get as getLogger } from "../../packages/utils/logger";
 import { createTransporter, type EmailConfig, loadEmailConfig, sendEmail } from "./email";
 import { loadTelegramConfig, sendTelegram, type TelegramConfig } from "./telegram";
 

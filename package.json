@@ -4,7 +4,8 @@
     "workspaces": [
         "core",
         "scraper",
-        "dashboard"
+        "dashboard",
+        "packages/*"
     ],
     "scripts": {
         "format": "bunx @biomejs/biome check ./",

@@ -1,4 +1,4 @@
-export default interface Site {
+export interface Site {
     id: string;
     url: string;
     strategy: string;

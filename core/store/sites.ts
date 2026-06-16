@@ -1,8 +1,8 @@
-import type Site from "../models/site";
+import type Site from "../../packages/models/site.model";
 import type { DB } from "./db";
 
 export class SiteStore {
-    constructor(private db: DB) {}
+    constructor(private db: DB) { }
 
     getAll(): Site[] {
         const query = this.db.conn.query(`SELECT * FROM sites`);

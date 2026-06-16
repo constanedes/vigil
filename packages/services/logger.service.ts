@@ -21,13 +21,11 @@ class Logger {
         const timestamp = new Date().toISOString();
         const color = COLORS[level];
 
-        // Consola coloreada
         const consoleLine = meta
             ? `${color}[${timestamp}] [${level}] ${message} ${JSON.stringify(meta)}${RESET}`
             : `${color}[${timestamp}] [${level}] ${message}${RESET}`;
         console.log(consoleLine);
 
-        // Archivo JSON estructurado
         const fileLine = JSON.stringify({ timestamp, level, message, ...meta }) + "\n";
         try {
             appendFileSync(this.logPath, fileLine);
