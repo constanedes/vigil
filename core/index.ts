@@ -1,7 +1,7 @@
-import { init as initLogger, get as getLogger } from "./logger/logger";
-import { openDb } from "./store/db";
-import { Notifier } from "./notifier/notifier";
-import { createServer } from "./api/server";
+import { init as initLogger, get as getLogger } from "@core/logger";
+import { openDb } from "@core/store/db";
+import { Notifier } from "@core/notifier/notifier";
+import { createServer } from "@core/api/server";
 
 const logPath = process.env.LOG_PATH || "./logs/vigil.log";
 const dbPath = process.env.DB_PATH || "./data/vigil.db";

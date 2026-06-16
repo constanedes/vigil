@@ -1,18 +1,17 @@
 {
-  "name": "vigil-scraper",
-  "version": "1.0.0",
-  "description": "Vigil web monitoring scraper — Playwright + Bun",
+  "name": "@vigil/scraper",
   "type": "module",
+  "description": "Vigil web monitoring scraper — Playwright + Bun",
   "scripts": {
-    "dev": "bun run src/main.ts",
-    "start": "bun run src/main.ts"
+    "dev": "bun run --watch src/poller.ts",
+    "start": "bun run src/poller.ts"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
-    "playwright": "^1.52.0"
+    "playwright": "^1.61.0"
   },
   "devDependencies": {
     "@types/bun": "^1.2.0",
-    "typescript": "^5.8.0"
+    "typescript": "^6.0.3"
   }
 }
