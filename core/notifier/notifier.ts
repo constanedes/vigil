@@ -1,7 +1,7 @@
+import type { Transporter } from "nodemailer";
 import { get as getLogger } from "../logger/logger";
-import { loadTelegramConfig, sendTelegram, TelegramConfig } from "./telegram";
-import { loadEmailConfig, sendEmail, EmailConfig, createTransporter } from "./email";
-import { Transporter } from "nodemailer";
+import { createTransporter, type EmailConfig, loadEmailConfig, sendEmail } from "./email";
+import { loadTelegramConfig, sendTelegram, type TelegramConfig } from "./telegram";
 
 export interface Event {
     site_id: string;
@@ -31,7 +31,7 @@ export class Notifier {
             tasks.push(
                 sendTelegram(this.tgCfg, event)
                     .then(() => log.info("Telegram OK"))
-                    .catch(err => log.error(`Telegram fail: ${err}`))
+                    .catch((err) => log.error(`Telegram fail: ${err}`)),
             );
         } else {
             log.warn("Telegram not configured, skipping...");
@@ -42,7 +42,7 @@ export class Notifier {
             tasks.push(
                 sendEmail(this.emailCfg, this.transporter, event)
                     .then(() => log.info("Email OK"))
-                    .catch(err => log.error(`Email fail: ${err}`))
+                    .catch((err) => log.error(`Email fail: ${err}`)),
             );
         } else {
             log.warn("Email SMTP not configured, skipping...");

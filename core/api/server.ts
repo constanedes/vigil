@@ -1,13 +1,13 @@
-import { Elysia } from "elysia";
 import { cors } from "@elysiajs/cors";
-import { DB } from "../store/db";
-import { Notifier } from "../notifier/notifier";
-import { get as getLogger } from "../logger/logger";
-import { siteRoutes } from "../api/routes/site.routes";
+import { Elysia } from "elysia";
 import { eventRoutes } from "../api/routes/event.routes";
+import { siteRoutes } from "../api/routes/site.routes";
 import { systemRoutes } from "../api/routes/system.routes";
-import { SiteStore } from "../store/sites";
+import { get as getLogger } from "../logger/logger";
+import type { Notifier } from "../notifier/notifier";
+import type { DB } from "../store/db";
 import { EventStore } from "../store/events";
+import { SiteStore } from "../store/sites";
 
 export function createServer(db: DB, notifier: Notifier, startAt: Date) {
     const log = getLogger();
@@ -24,6 +24,6 @@ export function createServer(db: DB, notifier: Notifier, startAt: Date) {
         })
         .use(siteRoutes(siteStore))
         .use(eventRoutes(eventStore, notifier))
-        .use(systemRoutes(startAt))
+        .use(systemRoutes(startAt));
     return app;
 }

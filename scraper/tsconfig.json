@@ -4,16 +4,9 @@
         "outDir": "./dist",
         "baseUrl": ".",
         "paths": {
-            "@core/*": [
-                "../core/*"
-            ]
+            "@core/*": ["../core/*"]
         },
-        "rootDirs": [
-            "./src",
-            "../core"
-        ]
+        "rootDirs": ["./src", "../core"]
     },
-    "include": [
-        "src/**/*"
-    ]
+    "include": ["src/**/*"]
 }

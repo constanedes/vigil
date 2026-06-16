@@ -1,9 +1,7 @@
-import { SiteStore } from "../../store/sites";
+import type { SiteStore } from "../../store/sites";
 
 export class SiteHandlers {
-    constructor(
-        private siteStore: SiteStore
-    ) { }
+    constructor(private siteStore: SiteStore) {}
 
     getAll = () => {
         try {
@@ -11,7 +9,7 @@ export class SiteHandlers {
         } catch (err: any) {
             return new Response(JSON.stringify({ error: err.message }), {
                 status: 500,
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
             });
         }
     };
@@ -24,13 +22,13 @@ export class SiteHandlers {
                 url,
                 strategy: strategy || "text",
                 interval_seconds: interval_seconds || 600,
-                enabled: enabled !== undefined ? enabled : 1
+                enabled: enabled !== undefined ? enabled : 1,
             });
             return { status: "created", id };
         } catch (err: any) {
             return new Response(JSON.stringify({ error: err.message }), {
                 status: 500,
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
             });
         }
     };

@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite";
-import { mkdirSync, existsSync } from "fs";
+import { existsSync, mkdirSync } from "fs";
 import { dirname } from "path";
 
 export class DB {

@@ -1,7 +1,7 @@
 import Elysia, { t } from "elysia";
-import { Notifier } from "../../notifier/notifier";
+import type { Notifier } from "../../notifier/notifier";
+import type { EventStore } from "../../store/events";
 import { EventHandlers } from "../handlers/event.handlers";
-import { EventStore } from "../../store/events";
 
 export const eventRoutes = (eventStore: EventStore, notifier: Notifier) => {
     const handlers = new EventHandlers(eventStore, notifier);
@@ -13,8 +13,8 @@ export const eventRoutes = (eventStore: EventStore, notifier: Notifier) => {
                 url: t.String(),
                 screenshot_path: t.Optional(t.String()),
                 diff_summary: t.String(),
-                detected_at: t.String()
-            })
+                detected_at: t.String(),
+            }),
         })
         .post("/test-notification", handlers.testNotification);
 };

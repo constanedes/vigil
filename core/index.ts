@@ -1,7 +1,7 @@
-import { init as initLogger, get as getLogger } from "@core/logger";
-import { openDb } from "@core/store/db";
-import { Notifier } from "@core/notifier/notifier";
 import { createServer } from "@core/api/server";
+import { get as getLogger, init as initLogger } from "@core/logger";
+import { Notifier } from "@core/notifier/notifier";
+import { openDb } from "@core/store/db";
 
 const logPath = process.env.LOG_PATH || "./logs/vigil.log";
 const dbPath = process.env.DB_PATH || "./data/vigil.db";
@@ -25,7 +25,7 @@ async function main() {
             port: port,
             hostname: "localhost",
             reusePort: false,
-        })
+        });
 
         process.on("SIGINT", () => {
             log.info("Signal received: SIGINT. Closing...");

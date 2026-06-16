@@ -1,4 +1,4 @@
-import { Event } from "./notifier";
+import type { Event } from "./notifier";
 
 export interface TelegramConfig {
     botToken: string;
@@ -8,7 +8,7 @@ export interface TelegramConfig {
 export function loadTelegramConfig(): TelegramConfig {
     return {
         botToken: process.env.TELEGRAM_BOT_TOKEN || "",
-        chatId: process.env.TELEGRAM_CHAT_ID || ""
+        chatId: process.env.TELEGRAM_CHAT_ID || "",
     };
 }
 
@@ -23,13 +23,13 @@ export async function sendTelegram(config: TelegramConfig, event: Event): Promis
     const response = await fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             chat_id: config.chatId,
             text: message,
-            parse_mode: "Markdown"
-        })
+            parse_mode: "Markdown",
+        }),
     });
 
     if (!response.ok) {

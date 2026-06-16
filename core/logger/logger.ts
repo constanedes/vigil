@@ -1,4 +1,4 @@
-import { appendFileSync, mkdirSync, existsSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync } from "fs";
 import { dirname } from "path";
 
 type Level = "INFO" | "WARN" | "ERROR" | "EVENT";
@@ -36,13 +36,23 @@ class Logger {
         }
     }
 
-    info(message: string, meta?: Record<string, unknown>) { this.write("INFO", message, meta); }
-    warn(message: string, meta?: Record<string, unknown>) { this.write("WARN", message, meta); }
-    error(message: string, meta?: Record<string, unknown>) { this.write("ERROR", message, meta); }
-    event(message: string, meta?: Record<string, unknown>) { this.write("EVENT", message, meta); }
+    info(message: string, meta?: Record<string, unknown>) {
+        this.write("INFO", message, meta);
+    }
+    warn(message: string, meta?: Record<string, unknown>) {
+        this.write("WARN", message, meta);
+    }
+    error(message: string, meta?: Record<string, unknown>) {
+        this.write("ERROR", message, meta);
+    }
+    event(message: string, meta?: Record<string, unknown>) {
+        this.write("EVENT", message, meta);
+    }
 }
 
 let instance: Logger | null = null;
 
-export const init = (logPath: string) => { instance = new Logger(logPath); };
-export const get = (): Logger => instance ??= new Logger("./logs/vigil.log");
+export const init = (logPath: string) => {
+    instance = new Logger(logPath);
+};
+export const get = (): Logger => (instance ??= new Logger("./logs/vigil.log"));

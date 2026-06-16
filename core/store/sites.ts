@@ -1,8 +1,8 @@
-import { DB } from "./db";
-import Site from "../models/site";
+import type Site from "../models/site";
+import type { DB } from "./db";
 
 export class SiteStore {
-    constructor(private db: DB) { }
+    constructor(private db: DB) {}
 
     getAll(): Site[] {
         const query = this.db.conn.query(`SELECT * FROM sites`);
@@ -25,7 +25,7 @@ export class SiteStore {
             $url: site.url,
             $strategy: site.strategy,
             $interval_seconds: site.interval_seconds,
-            $enabled: site.enabled
+            $enabled: site.enabled,
         });
     }
 }

@@ -1,8 +1,8 @@
-import { DB } from "./db";
-import Event from "../models/event";
+import type Event from "../models/event";
+import type { DB } from "./db";
 
 export class EventStore {
-    constructor(private db: DB) { }
+    constructor(private db: DB) {}
 
     insert(event: Event): void {
         const query = this.db.conn.query(`
@@ -14,7 +14,7 @@ export class EventStore {
         query.get({
             $site_id: event.site_id,
             $detected_at: event.detected_at,
-            $screenshot_path: event.screenshot_path || null
+            $screenshot_path: event.screenshot_path || null,
         }) as Event;
     }
 
@@ -29,4 +29,3 @@ export class EventStore {
         return query.all(siteId, limit) as Event[];
     }
 }
-
