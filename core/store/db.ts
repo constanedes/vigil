@@ -13,7 +13,7 @@ export class DB {
 
         // Open connection with foreign keys and WAL enabled automatically by bun:sqlite but we can enforce some pragmas
         this.conn = new Database(dbPath, { create: true });
-        
+
         // Setup Pragmas
         this.conn.run("PRAGMA journal_mode=WAL");
         this.conn.run("PRAGMA foreign_keys=ON");
@@ -25,13 +25,14 @@ export class DB {
     private migrate() {
         const schema = `
         CREATE TABLE IF NOT EXISTS sites (
-            id              TEXT PRIMARY KEY,
-            url             TEXT NOT NULL,
-            strategy        TEXT NOT NULL DEFAULT 'text',
+            id               TEXT PRIMARY KEY,
+            url              TEXT NOT NULL,
+            strategy         TEXT NOT NULL DEFAULT 'text',
+            jitter_seconds   INTEGER NOT NULL DEFAULT 0,
             interval_seconds INTEGER NOT NULL DEFAULT 600,
-            enabled         INTEGER NOT NULL DEFAULT 1,
-            created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at      DATETIME
+            enabled          INTEGER NOT NULL DEFAULT 1,
+            created_at       DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at       DATETIME
         );
 
         CREATE TABLE IF NOT EXISTS events (

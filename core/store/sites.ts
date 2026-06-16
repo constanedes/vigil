@@ -1,14 +1,5 @@
 import { DB } from "./db";
-
-export interface Site {
-    id: string;
-    url: string;
-    strategy: string;
-    interval_seconds: number;
-    enabled: number;
-    created_at?: string;
-    updated_at?: string | null;
-}
+import Site from "../models/site";
 
 export class SiteStore {
     constructor(private db: DB) { }

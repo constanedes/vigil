@@ -1,12 +1,5 @@
 import { DB } from "./db";
-
-export interface Event {
-    id?: number;
-    site_id: string;
-    detected_at: string;
-    screenshot_path?: string | null;
-    created_at?: string;
-}
+import Event from "../models/event";
 
 export class EventStore {
     constructor(private db: DB) { }

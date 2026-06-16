@@ -7,12 +7,10 @@ export class EventHandlers {
         private notifier: Notifier
     ) { }
 
-    createEvent = async ({ body }: { body: any }) => {
+    createEvent = async ({ body }: { body: Event }) => {
         try {
-            const event = body as Event;
-
-            this.eventStore.insert(event);
-            await this.notifier.notifyAll(event);
+            this.eventStore.insert(body);
+            await this.notifier.notifyAll(body);
 
             return { status: "ok" };
         } catch (err: any) {

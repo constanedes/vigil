@@ -5,6 +5,7 @@ import { SiteStore } from "../../store/sites";
 export const siteRoutes = (siteStore: SiteStore) => {
     const handlers = new SiteHandlers(siteStore);
 
+
     return new Elysia({ prefix: "/sites" })
         .get("/", handlers.getAll)
         .post("/", handlers.create, {
