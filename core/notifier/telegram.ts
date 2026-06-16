@@ -1,3 +1,5 @@
+import { Event } from "./notifier";
+
 export interface TelegramConfig {
     botToken: string;
     chatId: string;
@@ -10,14 +12,14 @@ export function loadTelegramConfig(): TelegramConfig {
     };
 }
 
-export async function sendTelegram(config: TelegramConfig, event: any): Promise<void> {
+export async function sendTelegram(config: TelegramConfig, event: Event): Promise<void> {
     if (!config.botToken || !config.chatId) {
         throw new Error("Telegram config is missing");
     }
 
     const message = `🚨 *Vigil Alert*\n\nSite: ${event.url}\nDiff: ${event.diff_summary}\nDetected: ${event.detected_at}`;
     const url = `https://api.telegram.org/bot${config.botToken}/sendMessage`;
-    
+
     const response = await fetch(url, {
         method: "POST",
         headers: {

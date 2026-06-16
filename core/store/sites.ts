@@ -10,28 +10,31 @@ export interface Site {
     updated_at?: string | null;
 }
 
-export function getAllSites(db: DB): Site[] {
-    const query = db.conn.query(`SELECT id, url, strategy, interval_seconds, enabled, created_at, updated_at FROM sites`);
-    return query.all() as Site[];
-}
+export class SiteStore {
+    constructor(private db: DB) { }
 
-export function getSiteByID(db: DB, id: string): Site | null {
-    const query = db.conn.query(`SELECT id, url, strategy, interval_seconds, enabled, created_at, updated_at FROM sites WHERE id = ?`);
-    const site = query.get(id) as Site | null;
-    return site || null;
-}
+    getAll(): Site[] {
+        const query = this.db.conn.query(`SELECT * FROM sites`);
+        return query.all() as Site[];
+    }
 
-export function createSite(db: DB, site: Site): void {
-    const query = db.conn.query(`
-        INSERT INTO sites (id, url, strategy, interval_seconds, enabled)
-        VALUES ($id, $url, $strategy, $interval_seconds, $enabled)
-    `);
-    
-    query.run({
-        $id: site.id,
-        $url: site.url,
-        $strategy: site.strategy,
-        $interval_seconds: site.interval_seconds,
-        $enabled: site.enabled
-    });
+    getByID(id: string): Site | null {
+        const query = this.db.conn.query(`SELECT * FROM sites WHERE id = ?`);
+        return (query.get(id) as Site) || null;
+    }
+
+    create(site: Site): void {
+        const query = this.db.conn.query(`
+            INSERT INTO sites (id, url, strategy, interval_seconds, enabled)
+            VALUES ($id, $url, $strategy, $interval_seconds, $enabled)
+        `);
+
+        query.run({
+            $id: site.id,
+            $url: site.url,
+            $strategy: site.strategy,
+            $interval_seconds: site.interval_seconds,
+            $enabled: site.enabled
+        });
+    }
 }

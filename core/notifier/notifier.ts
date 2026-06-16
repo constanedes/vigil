@@ -1,8 +1,9 @@
 import { get as getLogger } from "../logger/logger";
 import { loadTelegramConfig, sendTelegram, TelegramConfig } from "./telegram";
-import { loadEmailConfig, sendEmail, EmailConfig } from "./email";
+import { loadEmailConfig, sendEmail, EmailConfig, createTransporter } from "./email";
+import { Transporter } from "nodemailer";
 
-export interface ChangeEvent {
+export interface Event {
     site_id: string;
     url: string;
     screenshot_path?: string;
@@ -13,13 +14,15 @@ export interface ChangeEvent {
 export class Notifier {
     private tgCfg: TelegramConfig;
     private emailCfg: EmailConfig;
+    private transporter: Transporter;
 
     constructor() {
         this.tgCfg = loadTelegramConfig();
         this.emailCfg = loadEmailConfig();
+        this.transporter = createTransporter(this.emailCfg);
     }
 
-    async notifyAll(event: ChangeEvent) {
+    async notifyAll(event: Event) {
         const log = getLogger();
         const tasks: Promise<void>[] = [];
 
@@ -37,7 +40,7 @@ export class Notifier {
         // Email
         if (this.emailCfg.host && this.emailCfg.from && this.emailCfg.to) {
             tasks.push(
-                sendEmail(this.emailCfg, event)
+                sendEmail(this.emailCfg, this.transporter, event)
                     .then(() => log.info("Email OK"))
                     .catch(err => log.error(`Email fail: ${err}`))
             );
