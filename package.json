@@ -10,12 +10,17 @@
     "scripts": {
         "format": "bunx @biomejs/biome check ./",
         "format:fix": "bunx @biomejs/biome check --write ./",
+        "format:ci": "bunx @biomejs/biome ci ./",
         "dev:core": "bun run --cwd ./core dev",
-        "dev:scraper": "bun run --cwd ./scraper dev"
+        "dev:scraper": "bun run --cwd ./scraper dev",
+        "dev:dashboard": "bun run --cwd ./dashboard dev",
+        "dev": "concurrently -n \"core,scraper,web\" -c \"blue,magenta,green\" \"bun run dev:core\" \"bun run dev:scraper\" \"bun run dev:dashboard\"",
+        "build": "bun build --target=bun ./core && bun build --target=bun ./scraper && bun build --target=bun ./dashboard"
     },
     "devDependencies": {
-        "@types/bun": "latest",
         "@biomejs/biome": "latest",
+        "@types/bun": "latest",
+        "concurrently": "^10.0.3",
         "typescript": "^6.0.3"
     }
 }

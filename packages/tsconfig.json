@@ -5,6 +5,7 @@
     },
     "include": [
         "src/**/*",
-        "../packages/**/*.ts"
+        "../packages/**/*.ts",
+        "../scraper/src/browser.ts"
     ]
 }

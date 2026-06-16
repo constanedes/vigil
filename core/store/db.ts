@@ -46,7 +46,7 @@ export class DB {
         CREATE INDEX IF NOT EXISTS idx_events_site_id ON events(site_id, detected_at DESC);
         `;
 
-        this.conn.exec(schema);
+        this.conn.run(schema);
     }
 
     close() {

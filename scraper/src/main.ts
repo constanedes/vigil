@@ -1,6 +1,4 @@
-import { get as getLogger } from "../../packages/utils/logger";
-import { closeBrowser } from "./browser";
-import { DEFAULT_CONFIG } from "./config";
+import { get as getLogger, configService } from "@vigil/services";
 import { startPolling } from "./poller";
 
 const logger = getLogger();
@@ -14,7 +12,7 @@ async function main(): Promise<void> {
   `);
 
     // Load configuration
-    const config = DEFAULT_CONFIG;
+    const config = configService.getConfig();
 
     logger.info(`Configuration loaded: ${config.sites.length} site(s)`);
     logger.info(`Core API: http://localhost:${config.core.port}`);

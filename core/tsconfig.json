@@ -5,7 +5,8 @@
   },
   "include": [
     "./**/*.ts",
-    "../packages/**/*.ts"
+    "../packages/**/*.ts",
+    "../scraper/src/browser.ts"
   ],
   "exclude": [
     "node_modules",

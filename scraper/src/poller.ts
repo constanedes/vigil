@@ -1,9 +1,8 @@
-import { get as getLogger } from "@vigil/services";
-import { createStealthContext, getBrowser } from "./browser";
-import type { SiteConfig, VigilConfig } from "./config";
-import { getCoreURL } from "./config";
+import { get as getLogger, configService } from "@vigil/services";
+import { browserService } from "./browser";
+import type { SiteConfig, VigilConfig } from "@vigil/models";
 import { cleanAndExtractText, hasChanged } from "./diff";
-import { randomDelay } from "./helpers";
+import { randomDelay } from "@vigil/helpers";
 import { captureSnapshot } from "./snapshot";
 
 interface SiteState {
@@ -14,6 +13,8 @@ interface SiteState {
 // In-memory store for previous snapshots (keyed by site ID)
 const previousStates: Map<string, SiteState> = new Map();
 const logger = getLogger();
+const browser = await browserService.getBrowser(configService.getConfig().scraper);
+const context = await browserService.createStealthContext(browser);
 
 /**
  * Polls a single site safely handling browser contexts and errors.
@@ -22,9 +23,6 @@ const logger = getLogger();
 async function pollSite(site: SiteConfig, config: VigilConfig): Promise<void> {
   logger.info(`Starting watcher → ${site.id}`);
 
-  const browser = await getBrowser(config.scraper);
-  // Instantiate the context and page outside the try block to ensure proper scope in 'finally'
-  const context = await createStealthContext(browser);
   const page = await context.newPage();
 
   try {
@@ -67,7 +65,7 @@ async function pollSite(site: SiteConfig, config: VigilConfig): Promise<void> {
     if (changed) {
       logger.info(`[${site.id}] Change detected! Notifying core...`);
 
-      const coreURL = getCoreURL(config);
+      const coreURL = configService.getCoreURL();
       await fetch(`${coreURL}/event`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
